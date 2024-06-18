@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByAccount(User loginMsg) {
         User user = userDao.getUserByAccount(loginMsg.getAccount());
-        if((!Objects.isNull(loginMsg.getPassword()))&&loginMsg.getPassword().equals(user.getPassword())){
+        if((!Objects.isNull(user))&&(!Objects.isNull(loginMsg.getPassword()))&&loginMsg.getPassword().equals(user.getPassword())){
             return user;
         }else {
             return null;

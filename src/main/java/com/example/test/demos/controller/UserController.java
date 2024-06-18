@@ -4,6 +4,7 @@ import com.example.test.demos.pojo.Result;
 import com.example.test.demos.pojo.User;
 import com.example.test.demos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import java.util.Objects;
 
 
 @RestController
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -19,6 +21,7 @@ public class UserController {
 
     @PostMapping("/login")
     public Result login(@RequestBody User loginMsg) {
+        System.out.println(loginMsg);
         User user = userService.getUserByAccount(loginMsg);
         if(Objects.isNull(user)){
             return Result.failure("账号或密码错误");
