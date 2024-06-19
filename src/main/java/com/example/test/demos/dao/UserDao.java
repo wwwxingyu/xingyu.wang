@@ -9,5 +9,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDao {
 
+    void deleteUser(String account);
+
     User getUserByAccount(@Param("account") String account);
+
+    void updateUser(User user);
 }

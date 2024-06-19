@@ -3,11 +3,9 @@ package com.example.test.demos.controller;
 import com.example.test.demos.pojo.Result;
 import com.example.test.demos.pojo.User;
 import com.example.test.demos.service.UserService;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
@@ -30,4 +28,15 @@ public class UserController {
         }
     }
 
+    @DeleteMapping("/delete/{account}")
+    public Result deleteUser(@PathVariable String account) {
+        userService.deleteUser(account);
+        return Result.success("删除成功");
+    }
+
+    @PutMapping("/update")
+    public Result updateUser(@RequestBody User user) {
+        userService.updateUser(user);
+        return Result.success("更新成功");
+    }
 }
